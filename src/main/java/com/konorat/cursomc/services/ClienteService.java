@@ -16,7 +16,6 @@ import com.konorat.cursomc.domain.Endereco;
 import com.konorat.cursomc.domain.enums.TipoCliente;
 import com.konorat.cursomc.dto.ClienteDTO;
 import com.konorat.cursomc.dto.ClienteNewDTO;
-import com.konorat.cursomc.repositories.CidadeRepository;
 import com.konorat.cursomc.repositories.ClienteRepository;
 import com.konorat.cursomc.repositories.EnderecoRepository;
 import com.konorat.cursomc.services.exceptions.DataIntegrityException;
