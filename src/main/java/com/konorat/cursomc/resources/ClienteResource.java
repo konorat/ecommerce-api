@@ -20,6 +20,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.konorat.cursomc.domain.Cliente;
 import com.konorat.cursomc.dto.ClienteDTO;
+import com.konorat.cursomc.dto.ClienteNewDTO;
 import com.konorat.cursomc.services.ClienteService;
 
 import jakarta.validation.Valid;
@@ -36,6 +37,15 @@ public class ClienteResource {
 
 			Cliente obj = service.find(id);		
 			return ResponseEntity.ok().body(obj);			
+	}
+	
+	@PostMapping
+	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDto) {
+		Cliente obj = service.fromDTO(objDto);
+		obj = service.insert(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(obj.getId()).toUri();
+		return ResponseEntity.created(uri).build();
 	}
 	
 	@GetMapping
