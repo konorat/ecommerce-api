@@ -1,6 +1,7 @@
 package com.konorat.cursomc.config;
 
 import com.konorat.cursomc.security.JWTAuthenticationFilter;
+import com.konorat.cursomc.security.JWTAuthorizationFilter;
 import com.konorat.cursomc.security.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -54,6 +55,7 @@ public class SecurityConfig{
 	      .sessionManagement()
 	      .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager(http.getSharedObject(AuthenticationConfiguration.class)), jwtUtil));
+		http.addFilter(new JWTAuthorizationFilter(authenticationManager(http.getSharedObject(AuthenticationConfiguration.class)), jwtUtil, userDetailsService));
 	    return http.build();
 	}
 
